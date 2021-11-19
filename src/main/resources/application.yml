@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/demo_db
+    username: jackson
+    password: jackson
+  jpa:
+    show-sql: true
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 200
+        max-idle: 20
+        max-wait: 60000
+    timeout: 5000
+server:
+  port: 8080
+mybatis-plus:
+  mapper-locations: classpath*:*mapper/**/*Mapper.xml
+logging:
+  level:
+    com.example.springbootdemo.mapper: debug
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true

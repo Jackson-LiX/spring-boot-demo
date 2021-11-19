@@ -12,3 +12,41 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
+build/
+bin/
+.settings/
+.gradle/
+.factorypath/
+.springBeans/
+.idea/
+venv/
+
+.git/
+.classpath
+.terraform/
+.project
+**/out/
+*.log
+
+.springBeans
+.factorypath
+
+# IDEs and editors
+*.iml
+.idea
+.c9/
+*.launch
+*.sublime-workspace
+*.hprof
+
+# Terraform
+**/tfplan
+**/*.tfstate
+**/*.tfstate.backup
+**/lambda_index_auto.zip
+**/output.txt
+**/**.lambda_handler.zip
+
+.env
+docker-compose-local/.compose_local_data
+

@@ -1,0 +1,26 @@
+version: "2.1"
+services:
+  localdb:
+    image: postgres:12
+    container_name: mypostgresql
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: jackson
+      POSTGRES_USER: jackson
+    volumes:
+      - C:\jackson\docker\postgresql\data:/var/lib/postgresql/data
+  local-redis:
+    image: redis:latest
+    container_name: myredis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - C:\jackson\docker\redis\redis.conf:/etc/redis/redis.conf
+      - C:\jackson\docker\redis\data:/data
+    command:
+      - redis-server /etc/redis/redis.conf
+      - redis-server --appendonly yes
+      - redis-server --requirepass 123456
+
