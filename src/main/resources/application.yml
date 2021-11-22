@@ -1,11 +1,14 @@
 spring:
+# datasource config
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/demo_db
     username: jackson
     password: jackson
+# jpa config
   jpa:
     show-sql: true
+# redis config
   redis:
     host: localhost
     port: 6379
@@ -23,6 +26,7 @@ mybatis-plus:
 logging:
   level:
     com.example.springbootdemo.mapper: debug
+# spring-actuator config
 management:
   endpoints:
     web:

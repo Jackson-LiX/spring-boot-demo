@@ -12,6 +12,11 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
+/**
+ * The implementation class of UserService
+ *
+ * @author Jackson
+ */
 public class UserServiceImpl implements UserService {
 
     private final UserModelMapper userModelMapper;

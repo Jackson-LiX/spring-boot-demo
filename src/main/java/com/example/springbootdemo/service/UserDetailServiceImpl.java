@@ -8,7 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collections;
 
-public class UserDetailServiceImpl implements UserDetailService{
+/**
+ * @author Jackson
+ */
+public class UserDetailServiceImpl implements UserDetailService {
 
     private final PasswordEncoder passwordEncoder;
 

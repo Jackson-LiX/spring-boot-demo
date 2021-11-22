@@ -5,6 +5,12 @@ import java.util.List;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.springbootdemo.model.UserModel;
 
+/**
+ * The service for user resource management.
+ * Implement the IService to use mybatis-plus function.
+ *
+ * @author Jackson
+ */
 public interface UserService extends IService<UserModel> {
 
     /**

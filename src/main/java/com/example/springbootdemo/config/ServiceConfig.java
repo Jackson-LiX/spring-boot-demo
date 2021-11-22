@@ -10,6 +10,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * @author Jackson
+ */
 @Configuration
 public class ServiceConfig {
 
