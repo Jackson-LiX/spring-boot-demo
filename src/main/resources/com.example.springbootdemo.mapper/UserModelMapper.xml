@@ -2,12 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.springbootdemo.mapper.UserModelMapper">
+    <resultMap id="BaseResultMap" type="com.example.springbootdemo.model.UserModel">
+        <id column="user_id" jdbcType="BIGINT" property="userId" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+    </resultMap>
 
-    <select id="loadUserByUserName" resultType="com.example.springbootdemo.model.UserModel">
+    <select id="loadUserByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
         select *
-        from user.user
+        from user_access.user_access
         where user_name = #{userName}
-          and password = #{passWord}
     </select>
 
 </mapper>

@@ -22,11 +22,10 @@ public class ServiceConfig {
         return new UserServiceImpl(userModelMapper, commonRedisTemplate);
     }
 
-
-
     @Bean
-    UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-        return new UserDetailServiceImpl(passwordEncoder);
+    UserDetailsService userDetailsService(UserModelMapper userModelMapper,
+                                          PasswordEncoder passwordEncoder) {
+        return new UserDetailServiceImpl(userModelMapper, passwordEncoder);
     }
 
 }

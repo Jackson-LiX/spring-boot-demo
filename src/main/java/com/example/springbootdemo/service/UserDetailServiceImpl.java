@@ -1,5 +1,6 @@
 package com.example.springbootdemo.service;
 
+import com.example.springbootdemo.mapper.UserModelMapper;
 import com.example.springbootdemo.model.UserModel;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,17 +14,19 @@ import java.util.Collections;
  */
 public class UserDetailServiceImpl implements UserDetailService {
 
+    private final UserModelMapper userModelMapper;
+
     private final PasswordEncoder passwordEncoder;
 
-    public UserDetailServiceImpl(PasswordEncoder passwordEncoder) {
+    public UserDetailServiceImpl(UserModelMapper userModelMapper,
+                                 PasswordEncoder passwordEncoder) {
+        this.userModelMapper = userModelMapper;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserModel userModel = new UserModel();
-        userModel.setUserName(username);
-        userModel.setPassword(passwordEncoder.encode("123456"));
-        return new User(userModel.getUserName(), userModel.getPassword(), Collections.emptyList());
+        UserModel userModel = userModelMapper.loadUserByUserName(username);
+        return new User(userModel.getUserName(), passwordEncoder.encode(userModel.getPassword()), Collections.emptyList());
     }
 }

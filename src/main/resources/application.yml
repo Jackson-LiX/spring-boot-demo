@@ -39,3 +39,11 @@ management:
       show-details: always
     shutdown:
       enabled: true
+# oauth2 config
+oauth2:
+  clientID: demo_user
+  authorizedGrantTypes: password
+  scopes: trust
+  accessTokenValidity: 7200
+  resourceAntMatchers: /noauth/**
+  securityAntMatchers: /oauth/token
