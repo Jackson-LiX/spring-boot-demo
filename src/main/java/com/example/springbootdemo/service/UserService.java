@@ -21,6 +21,14 @@ public interface UserService extends IService<UserModel> {
     List<UserModel> getAllUser();
 
     /**
+     * Persist the user
+     *
+     * @param userModel
+     * @return UserModel
+     */
+    UserModel persistUser(UserModel userModel);
+
+    /**
      * Add user info to redis
      *
      * @param userModel

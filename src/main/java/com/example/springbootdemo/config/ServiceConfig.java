@@ -24,14 +24,14 @@ public class ServiceConfig {
 
     @Bean
     UserService userService(UserModelMapper userModelMapper,
-                            RedisTemplate<String, Object> commonRedisTemplate) {
-        return new UserServiceImpl(userModelMapper, commonRedisTemplate);
+                            RedisTemplate<String, Object> commonRedisTemplate,
+                            PasswordEncoder passwordEncoder) {
+        return new UserServiceImpl(userModelMapper, commonRedisTemplate, passwordEncoder);
     }
 
     @Bean
-    UserDetailsService userDetailsService(UserModelMapper userModelMapper,
-                                          PasswordEncoder passwordEncoder) {
-        return new UserDetailServiceImpl(userModelMapper, passwordEncoder);
+    UserDetailsService userDetailsService(UserModelMapper userModelMapper) {
+        return new UserDetailServiceImpl(userModelMapper);
     }
 
 }

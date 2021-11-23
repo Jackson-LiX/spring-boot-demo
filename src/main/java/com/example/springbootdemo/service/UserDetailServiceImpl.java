@@ -16,17 +16,14 @@ public class UserDetailServiceImpl implements UserDetailService {
 
     private final UserModelMapper userModelMapper;
 
-    private final PasswordEncoder passwordEncoder;
 
-    public UserDetailServiceImpl(UserModelMapper userModelMapper,
-                                 PasswordEncoder passwordEncoder) {
+    public UserDetailServiceImpl(UserModelMapper userModelMapper) {
         this.userModelMapper = userModelMapper;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserModel userModel = userModelMapper.loadUserByUserName(username);
-        return new User(userModel.getUserName(), passwordEncoder.encode(userModel.getPassword()), Collections.emptyList());
+        return new User(userModel.getUserName(), userModel.getPassword(), Collections.emptyList());
     }
 }

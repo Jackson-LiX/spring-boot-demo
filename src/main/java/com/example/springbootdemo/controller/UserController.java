@@ -1,9 +1,9 @@
 package com.example.springbootdemo.controller;
 
+import com.example.springbootdemo.model.UserModel;
 import com.example.springbootdemo.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.springbootdemo.model.UserModel;
 
 import java.util.List;
 
@@ -28,6 +28,28 @@ public class UserController {
     @GetMapping("/allUser")
     public ResponseEntity<List<UserModel>> getAllUser() {
         return ResponseEntity.ok(userService.list());
+    }
+
+    /**
+     * Add user
+     *
+     * @param userModel
+     * @return
+     */
+    @PostMapping
+    public ResponseEntity<UserModel> addUser(@RequestBody UserModel userModel) {
+        return ResponseEntity.ok(userService.persistUser(userModel));
+    }
+
+    /**
+     * Update user
+     *
+     * @param userModel
+     * @return PasswordEncoder
+     */
+    @PutMapping
+    public ResponseEntity<UserModel> updateUser(@RequestBody UserModel userModel) {
+        return ResponseEntity.ok(userService.persistUser(userModel));
     }
 
     /**

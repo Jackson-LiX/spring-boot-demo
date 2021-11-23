@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.springbootdemo.mapper.UserModelMapper;
 import com.example.springbootdemo.model.UserModel;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,10 +24,14 @@ public class UserServiceImpl implements UserService {
 
     private final RedisTemplate<String, Object> redisTemplate;
 
+    private final PasswordEncoder passwordEncoder;
+
     public UserServiceImpl(UserModelMapper userModelMapper,
-                           RedisTemplate<String, Object> redisTemplate) {
+                           RedisTemplate<String, Object> redisTemplate,
+                           PasswordEncoder passwordEncoder) {
         this.userModelMapper = userModelMapper;
         this.redisTemplate = redisTemplate;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -37,6 +42,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserModel> getAllUser() {
         return userModelMapper.selectList(null);
+    }
+
+    /**
+     * (non-Javadoc)
+     *
+     * @see UserService#persistUser(UserModel)
+     */
+    @Override
+    public UserModel persistUser(UserModel userModel) {
+        userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
+        if (userModel.getUserId() != null) {
+            userModelMapper.updateById(userModel);
+        } else {
+            userModelMapper.insert(userModel);
+        }
+        return userModel;
     }
 
     /**
