@@ -1,4 +1,4 @@
-create table if not exists user_access.user_access
+create table if not exists demo.user_access
 (
     user_id   bigserial
         constraint user_access_pk
@@ -7,6 +7,6 @@ create table if not exists user_access.user_access
     password  text not null
 );
 
-create unique index user_access_user_id_uindex
-    on user_access.user_access (user_id);
+create unique index if not exists user_access_user_id_uindex
+    on demo.user_access (user_id);
 
