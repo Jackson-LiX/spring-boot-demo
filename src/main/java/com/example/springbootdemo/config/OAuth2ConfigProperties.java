@@ -18,4 +18,5 @@ public class OAuth2ConfigProperties {
     private int accessTokenValidity;
     private String[] resourceAntMatchers;
     private String[] securityAntMatchers;
+    private String jwtSigningKey;
 }

@@ -24,11 +24,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.oAuth2ConfigProperties = oAuth2ConfigProperties;
     }
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

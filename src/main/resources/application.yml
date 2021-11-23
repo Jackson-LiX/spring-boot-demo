@@ -47,3 +47,4 @@ oauth2:
   accessTokenValidity: 7200
   resourceAntMatchers: /noauth/**
   securityAntMatchers: /oauth/token
+  jwtSigningKey: demo_signing_key
