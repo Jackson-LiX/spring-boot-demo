@@ -24,6 +24,13 @@ spring:
     # disable the flyway, need to execute the flyway by command runner way
     enabled: false
     clean-disabled: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: demo_db
+      username: admin
+      password: 123456
 server:
   port: 8080
 mybatis-plus:
@@ -31,6 +38,7 @@ mybatis-plus:
 logging:
   level:
     com.example.springbootdemo.mapper: debug
+    org.springframework.data.mongodb.core: debug
 # spring-actuator config
 management:
   endpoints:
