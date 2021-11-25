@@ -10,7 +10,7 @@
 
     <select id="loadUserByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
         select *
-        from user_access.user_access
+        from demo.user_access
         where user_name = #{userName}
     </select>
 
