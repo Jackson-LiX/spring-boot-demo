@@ -7,6 +7,8 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
 /**
+ * The config class for the oauth2 resource server
+ *
  * @author Jackson
  */
 @Configuration

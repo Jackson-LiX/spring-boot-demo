@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 /**
+ * The flyway config
+ *
  * @author Jackson
  */
 @Configuration

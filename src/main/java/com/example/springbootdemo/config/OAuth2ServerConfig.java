@@ -22,6 +22,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import java.util.Arrays;
 
 /**
+ * The config class for the oauth2 server
+ *
  * @author Jackson
  */
 @Configuration

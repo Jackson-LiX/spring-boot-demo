@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
+ * The controller for user resource management
+ *
  * @author Jackson
  */
 @RestController

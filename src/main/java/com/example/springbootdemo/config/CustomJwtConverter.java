@@ -10,6 +10,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
+ * Customize the returned token
+ *
  * @author Jackson
  */
 public class CustomJwtConverter implements TokenEnhancer {

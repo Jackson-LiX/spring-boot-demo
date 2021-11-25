@@ -5,6 +5,8 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
+ * The MVC config for template viewer
+ *
  * @author Jackson
  */
 @Configuration

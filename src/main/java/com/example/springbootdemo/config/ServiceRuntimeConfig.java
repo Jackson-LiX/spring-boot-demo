@@ -12,10 +12,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
+ * The config class contains the runtime environment config
+ *
  * @author Jackson
  */
 @Configuration
-public class ServiceConfig {
+public class ServiceRuntimeConfig {
 
     @Bean
     PasswordEncoder passwordEncoder() {

@@ -3,6 +3,8 @@ package com.example.springbootdemo.common.exception;
 import lombok.Data;
 
 /**
+ * The exception class for project business error
+ *
  * @author Jackson
  */
 @Data

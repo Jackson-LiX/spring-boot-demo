@@ -5,6 +5,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 /**
+ * The class contains the oauth2 configuration
+ *
  * @author Jackson
  */
 @Data
