@@ -29,43 +29,27 @@ public class ExceptionalResponseAdvice {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Map<String, Object> handleExceptions(HttpServletRequest request, Exception exception) {
-        Map<String, Object> response = new HashMap<>();
-        response.put(URL, request.getRequestURL());
-        response.put(ERROR_MESSAGE, GENERIC_EXCEPTION);
-        response.put(ERROR_DETAIL, getStackMsg(exception));
-        log.error("Got exception, detail: {}", exception.getMessage());
-        return response;
+        return generateExceptionResponse(request, exception, GENERIC_EXCEPTION);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public Map<String, Object> handlePermissionExceptions(HttpServletRequest request, Exception exception) {
-        Map<String, Object> response = new HashMap<>();
-        response.put(URL, request.getRequestURL());
-        response.put(ERROR_MESSAGE, WITHOUT_PERMISSION);
-        response.put(ERROR_DETAIL, getStackMsg(exception));
-        log.error("Got exception, detail: {}", exception.getMessage());
-        return response;
+        return generateExceptionResponse(request, exception, WITHOUT_PERMISSION);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Map<String, Object> handleDataIntegrityViolationException(HttpServletRequest request, Exception exception) {
-        Map<String, Object> response = new HashMap<>();
-        response.put(URL, request.getRequestURL());
-        response.put(ERROR_MESSAGE, FOREIGN_KEY_CONSTRAINT);
-        response.put(ERROR_DETAIL, getStackMsg(exception));
-        log.error("Got exception, detail: {}", exception.getMessage());
-        return response;
+        return generateExceptionResponse(request, exception, FOREIGN_KEY_CONSTRAINT);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public Map<String, Object> onMethodArgumentNotValidException(HttpServletRequest request, MethodArgumentNotValidException methodArgumentNotValidException) {
         // assemble errorResponse
-        Map<String, Object> response = new HashMap<>();
+        Map<String, Object> response = new HashMap<>(3);
         response.put(URL, request.getRequestURL());
-        // everything starts as a generic exception. The datafabric exception handler might override this value
         response.put(ERROR_MESSAGE, METHOD_ARGUMENT_NOT_VALID);
         // Get the error message field to send back to the user in the error response
         String errorMessage = methodArgumentNotValidException.getBindingResult().getFieldErrors()
@@ -74,6 +58,23 @@ public class ExceptionalResponseAdvice {
                 .collect(Collectors.joining(", "));
         response.put(ERROR_DETAIL, errorMessage);
         log.error("Got exception, detail: {}", errorMessage);
+        return response;
+    }
+
+    /**
+     * Generate exception response
+     *
+     * @param request
+     * @param exception
+     * @param genericException
+     * @return Map<String, Object>
+     */
+    private Map<String, Object> generateExceptionResponse(HttpServletRequest request, Exception exception, String genericException) {
+        Map<String, Object> response = new HashMap<>(3);
+        response.put(URL, request.getRequestURL());
+        response.put(ERROR_MESSAGE, genericException);
+        response.put(ERROR_DETAIL, getStackMsg(exception));
+        log.error("Got exception, detail: {}", exception.getMessage());
         return response;
     }
 
