@@ -1,5 +1,6 @@
 package com.example.springbootdemo.common.exception;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
@@ -21,6 +22,7 @@ import static com.example.springbootdemo.common.constants.CommonConstants.ErrorM
  *
  * @author Jackson
  */
+@Slf4j
 @RestControllerAdvice
 public class ExceptionalResponseAdvice {
 
@@ -31,8 +33,7 @@ public class ExceptionalResponseAdvice {
         response.put(URL, request.getRequestURL());
         response.put(ERROR_MESSAGE, GENERIC_EXCEPTION);
         response.put(ERROR_DETAIL, getStackMsg(exception));
-        // TODO Will replace the console print statement with logger after the logger integrated
-        System.out.println("Got exception, detail: " + exception.getMessage());
+        log.error("Got exception, detail: {}", exception.getMessage());
         return response;
     }
 
@@ -43,8 +44,7 @@ public class ExceptionalResponseAdvice {
         response.put(URL, request.getRequestURL());
         response.put(ERROR_MESSAGE, WITHOUT_PERMISSION);
         response.put(ERROR_DETAIL, getStackMsg(exception));
-        // TODO Will replace the console print statement with logger after the logger integrated
-        System.out.println("Got exception, detail: " + exception.getMessage());
+        log.error("Got exception, detail: {}", exception.getMessage());
         return response;
     }
 
@@ -55,8 +55,7 @@ public class ExceptionalResponseAdvice {
         response.put(URL, request.getRequestURL());
         response.put(ERROR_MESSAGE, FOREIGN_KEY_CONSTRAINT);
         response.put(ERROR_DETAIL, getStackMsg(exception));
-        // TODO Will replace the console print statement with logger after the logger integrated
-        System.out.println("Got exception, detail: " + exception.getMessage());
+        log.error("Got exception, detail: {}", exception.getMessage());
         return response;
     }
 
@@ -74,8 +73,7 @@ public class ExceptionalResponseAdvice {
                 .map(item -> item.getDefaultMessage())
                 .collect(Collectors.joining(", "));
         response.put(ERROR_DETAIL, errorMessage);
-        // TODO Will replace the console print statement with logger after the logger integrated
-        System.out.println("Got exception, detail: " + errorMessage);
+        log.error("Got exception, detail: {}", errorMessage);
         return response;
     }
 

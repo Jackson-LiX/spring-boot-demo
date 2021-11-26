@@ -47,7 +47,7 @@ public class UserController {
      * Update user
      *
      * @param userModel
-     * @return PasswordEncoder
+     * @return UserModel
      */
     @PutMapping
     public ResponseEntity<UserModel> updateUser(@RequestBody UserModel userModel) {
