@@ -9,7 +9,7 @@ import lombok.Data;
  * @author Jackson
  */
 @Data
-@TableName("user_access.user_access")
+@TableName("demo.user_access")
 public class UserModel {
 
     @TableId(value = "user_id", type = IdType.AUTO)
@@ -18,4 +18,8 @@ public class UserModel {
     private String userName;
 
     private String password;
+
+    private String mobile;
+
+    private String email;
 }

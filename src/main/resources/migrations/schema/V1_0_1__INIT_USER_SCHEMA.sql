@@ -4,7 +4,9 @@ create table if not exists demo.user_access
         constraint user_access_pk
             primary key,
     user_name text not null,
-    password  text not null
+    password  text not null,
+    mobile    text,
+    email     text
 );
 
 create unique index if not exists user_access_user_id_uindex
